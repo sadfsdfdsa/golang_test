@@ -1,5 +1,5 @@
 echo "Testing..."
-go test -v
+go test -v -coverprofile cover.out ./ 
 echo "Testing success!"
 
 echo "Building..."
