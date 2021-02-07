@@ -20,9 +20,9 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	port := os.Getenv("PORT")
-    // if port == nil {
-    //     port = "8181"
-    // }
+    if port == "" {
+        port = "8181"
+    }
 
 	router := mux.NewRouter()
 	router.HandleFunc("/products/{id:[0-9]+}", productsHandler).Methods("GET")
@@ -30,6 +30,6 @@ func main() {
 	router.HandleFunc("/", indexHandler)
 	http.Handle("/", router)
 
-	fmt.Println("Server is listening...")
+	fmt.Println("Server is listening..."+port)
 	http.ListenAndServe(":"+port, nil)
 }
